@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Server Sentinel - Hệ Thống Giám Sát Hiệu Năng Phân Tán{% endblock %}</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom Modern CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top py-2">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <div class="bg-primary text-white rounded-3 p-2 me-2 d-flex align-items-center justify-content-center" style="width: 34px; height: 34px;">
+                    <i class="fa-solid fa-server fa-sm"></i>
+                </div>
+                <span>Server Sentinel</span>
+                <span class="badge bg-primary-subtle text-primary ms-2 fs-7 px-2 py-1 border border-primary-subtle" style="font-size: 0.72rem;">v2.0 LAN Ready</span>
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3">
+                    <li class="nav-item me-1">
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">
+                            <i class="fa-solid fa-chart-line me-1"></i> Live Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item me-1">
+                        <a class="nav-link {% if request.path == '/analytics' %}active{% endif %}" href="/analytics">
+                            <i class="fa-solid fa-brain me-1"></i> Phân Tích Dữ Liệu
+                        </a>
+                    </li>
+                    <li class="nav-item me-1">
+                        <a class="nav-link {% if request.path == '/anomalies' %}active{% endif %}" href="/anomalies">
+                            <i class="fa-solid fa-triangle-exclamation me-1"></i> Nhật Ký Dị Biệt
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Right Status & Control Badges -->
+                <div class="d-flex align-items-center gap-2">
+                    <!-- LAN Connection Info Badge -->
+                    <div class="bg-dark text-light border border-secondary border-opacity-25 rounded-3 px-3 py-1 d-flex align-items-center" style="font-size: 0.85rem;" title="Địa chỉ LAN kết nối của Socket Server">
+                        <span class="pulse-dot-online"></span>
+                        <span class="text-secondary me-1">LAN IP:</span>
+                        <strong class="text-white font-monospace">{{ local_ip or '127.0.0.1' }}:9999</strong>
+                        <button class="btn btn-link btn-sm text-secondary p-0 ms-2 text-decoration-none" onclick="navigator.clipboard.writeText('{{ local_ip or '127.0.0.1' }}'); alert('Đã sao chép IP Server LAN: {{ local_ip or '127.0.0.1' }}');" title="Sao chép IP">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+
+                    <!-- Button Configure Thresholds Modal -->
+                    <button class="btn btn-outline-light btn-sm px-3" data-bs-toggle="modal" data-bs-target="#modalSettings">
+                        <i class="fa-solid fa-sliders me-1"></i> Ngưỡng
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="container-fluid px-4 py-4 flex-grow-1">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Modal Cấu hình Ngưỡng Cảnh báo (Global) -->
+    <div class="modal fade" id="modalSettings" tabindex="-1" aria-labelledby="modalSettingsLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 14px;">
+                <div class="modal-header bg-light border-0 py-3">
+                    <h6 class="modal-title fw-bold text-dark" id="modalSettingsLabel">
+                        <i class="fa-solid fa-sliders text-primary me-2"></i>Cài Đặt Ngưỡng Cảnh Báo An Toàn
+                    </h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="text-secondary small mb-3">
+                        Các ngưỡng dưới đây được lưu vĩnh viễn vào CSDL SQLite và áp dụng tự động cho thuật toán giám sát thời gian thực.
+                    </p>
+                    <div class="mb-3">
+                        <label for="cfgCpuThresh" class="form-label fw-semibold small text-secondary">Ngưỡng cảnh báo CPU (%)</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white"><i class="fa-solid fa-microchip text-warning"></i></span>
+                            <input type="number" step="1" min="1" max="100" class="form-control" id="cfgCpuThresh" value="85">
+                            <span class="input-group-text bg-white">%</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cfgRamThresh" class="form-label fw-semibold small text-secondary">Ngưỡng cảnh báo RAM (%)</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white"><i class="fa-solid fa-memory text-primary"></i></span>
+                            <input type="number" step="1" min="1" max="100" class="form-control" id="cfgRamThresh" value="85">
+                            <span class="input-group-text bg-white">%</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cfgDiskThresh" class="form-label fw-semibold small text-secondary">Ngưỡng cảnh báo Dung Lượng Đĩa (%)</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white"><i class="fa-solid fa-hard-drive text-success"></i></span>
+                            <input type="number" step="1" min="1" max="100" class="form-control" id="cfgDiskThresh" value="90">
+                            <span class="input-group-text bg-white">%</span>
+                        </div>
+                    </div>
+                    <div id="settingsAlert" class="mt-2"></div>
+                </div>
+                <div class="modal-footer border-0 bg-light py-2 px-4">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary btn-sm px-3" onclick="saveGlobalThresholds()">
+                        <i class="fa-solid fa-floppy-disk me-1"></i> Lưu Vào CSDL
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-3 text-center text-secondary small">
+        <div class="container-fluid px-4 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+            <div>
+                <strong>Server Sentinel v2.0</strong> — Hệ thống Giám sát & Phân tích Hiệu năng Máy chủ Phân tán
+            </div>
+            <div class="text-muted">
+                Kiến trúc: Python Socket TCP &middot; SQLite WAL &middot; Pandas Analytics &middot; Flask &middot; Tkinter
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    // Tải cấu hình ngưỡng khi mở modal
+    document.getElementById('modalSettings')?.addEventListener('show.bs.modal', async () => {
+        try {
+            const res = await fetch('/api/settings');
+            const data = await res.json();
+            if (data.cpu) document.getElementById('cfgCpuThresh').value = data.cpu;
+            if (data.ram) document.getElementById('cfgRamThresh').value = data.ram;
+            if (data.disk) document.getElementById('cfgDiskThresh').value = data.disk;
+        } catch (e) {
+            console.error('Không thể tải ngưỡng:', e);
+        }
+    });
+
+    async function saveGlobalThresholds() {
+        const cpu = parseFloat(document.getElementById('cfgCpuThresh').value);
+        const ram = parseFloat(document.getElementById('cfgRamThresh').value);
+        const disk = parseFloat(document.getElementById('cfgDiskThresh').value);
+        const alertBox = document.getElementById('settingsAlert');
+        
+        try {
+            const res = await fetch('/api/settings', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ cpu, ram, disk })
+            });
+            const result = await res.json();
+            if (result.success) {
+                alertBox.innerHTML = `<div class="alert alert-success py-2 small mb-0"><i class="fa-solid fa-check-circle me-1"></i>${result.message}</div>`;
+                setTimeout(() => {
+                    const modalEl = document.getElementById('modalSettings');
+                    const modal = bootstrap.Modal.getInstance(modalEl);
+                    if (modal) modal.hide();
+                    alertBox.innerHTML = '';
+                    if (typeof updateDashboard === 'function') updateDashboard();
+                }, 1200);
+            } else {
+                alertBox.innerHTML = `<div class="alert alert-danger py-2 small mb-0">${result.error}</div>`;
+            }
+        } catch (e) {
+            alertBox.innerHTML = `<div class="alert alert-danger py-2 small mb-0">Lỗi lưu cấu hình: ${e}</div>`;
+        }
+    }
+    </script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

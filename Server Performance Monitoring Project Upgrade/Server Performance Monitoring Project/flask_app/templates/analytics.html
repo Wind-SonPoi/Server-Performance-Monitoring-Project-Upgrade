@@ -1,0 +1,319 @@
+{% extends "base.html" %}
+
+{% block title %}Phân Tích Dữ Liệu & Thống Kê - Data Science Engine{% endblock %}
+
+{% block content %}
+<!-- Top Header & Controls -->
+<div class="control-bar mb-4 d-flex flex-wrap align-items-center justify-content-between gap-3">
+    <div class="d-flex align-items-center gap-2">
+        <div class="icon-container bg-primary-subtle text-primary">
+            <i class="fa-solid fa-brain"></i>
+        </div>
+        <div>
+            <h5 class="fw-bold mb-0 text-dark">Phân Tích Dữ Liệu & Thống Kê Mô Tả</h5>
+            <small class="text-secondary">Trích xuất chuỗi thời gian, tính toán Moving Average và ma trận tương quan Pearson</small>
+        </div>
+    </div>
+
+    <div class="d-flex flex-wrap align-items-center gap-2">
+        <!-- Agent Select -->
+        <div class="d-flex align-items-center bg-light border rounded-3 px-2 py-1">
+            <i class="fa-solid fa-server text-secondary me-2 small"></i>
+            <select id="analyticsAgentSelect" class="form-select form-select-sm border-0 bg-transparent fw-semibold" style="width: auto; min-width: 180px;">
+                {% for agent in agents %}
+                <option value="{{ agent.agent_id }}" {% if agent.agent_id == selected_agent %}selected{% endif %}>
+                    {{ agent.agent_id }} ({{ agent.hostname }})
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Export High-Res Charts Button -->
+        <button id="btnGenerateCharts" class="btn btn-primary btn-sm px-3 shadow-sm">
+            <i class="fa-solid fa-chart-pie me-1"></i> Xuất Biểu Đồ Bài Báo (Matplotlib)
+        </button>
+    </div>
+</div>
+
+<div id="alertPlaceholder"></div>
+
+<!-- KPI Summary Cards for Selected Node -->
+<div class="row g-3 mb-4">
+    <!-- Trend Card -->
+    <div class="col-md-4">
+        <div class="card card-modern stat-card-kpi border-warning h-100 p-3">
+            <div class="text-secondary text-uppercase fw-semibold small" style="font-size: 0.75rem;">Xu Hướng Tải CPU (Rolling Slope)</div>
+            <div class="d-flex align-items-center justify-content-between mt-2">
+                <h4 class="fw-bold mb-0 text-dark" id="trendText">Đang tải...</h4>
+                <span id="trendBadge" class="badge bg-secondary px-2 py-1">...</span>
+            </div>
+            <small class="text-muted mt-2 d-block">Ước tính từ độ dốc hồi quy tuyến tính 5 mẫu gần nhất</small>
+        </div>
+    </div>
+
+    <!-- Sample Count Card -->
+    <div class="col-md-4">
+        <div class="card card-modern stat-card-kpi border-info h-100 p-3">
+            <div class="text-secondary text-uppercase fw-semibold small" style="font-size: 0.75rem;">Quy Mô Mẫu Phân Tích (Sample Count)</div>
+            <div class="d-flex align-items-center justify-content-between mt-2">
+                <h4 class="fw-bold mb-0 text-dark" id="sampleCount">0</h4>
+                <span class="badge bg-info-subtle text-info border border-info-subtle px-2 py-1">Bản ghi</span>
+            </div>
+            <small class="text-muted mt-2 d-block">Được làm sạch và khử nhiễu tự động qua Pandas</small>
+        </div>
+    </div>
+
+    <!-- Engine Card -->
+    <div class="col-md-4">
+        <div class="card card-modern stat-card-kpi border-success h-100 p-3">
+            <div class="text-secondary text-uppercase fw-semibold small" style="font-size: 0.75rem;">Công Cụ Phân Tích (Analytics Engine)</div>
+            <div class="d-flex align-items-center justify-content-between mt-2">
+                <h5 class="fw-bold mb-0 text-success"><i class="fa-solid fa-check-circle me-1"></i>Pandas & NumPy</h5>
+                <span class="badge bg-success-subtle text-success border border-success-subtle">Sẵn sàng</span>
+            </div>
+            <small class="text-muted mt-2 d-block">SMA, EMA, Phân vị (Percentiles), Z-Score và Correlation</small>
+        </div>
+    </div>
+</div>
+
+<!-- Inline Generated Charts Preview Container -->
+<div id="chartsPreviewRow" class="row g-4 mb-4" style="display: none;">
+    <div class="col-lg-6">
+        <div class="card card-modern">
+            <div class="card-header bg-white py-3 border-0 d-flex justify-content-between align-items-center">
+                <h6 class="fw-bold mb-0 text-dark"><i class="fa-regular fa-image text-primary me-2"></i>Biểu Đồ Chuỗi Thời Gian (Time-series)</h6>
+                <a id="linkChart1" href="#" target="_blank" class="btn btn-sm btn-outline-secondary">Mở Ảnh Gốc</a>
+            </div>
+            <div class="card-body p-2 text-center bg-light">
+                <img id="imgChart1" src="" class="img-fluid rounded border" alt="Timeseries Chart" style="max-height: 380px;">
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card card-modern">
+            <div class="card-header bg-white py-3 border-0 d-flex justify-content-between align-items-center">
+                <h6 class="fw-bold mb-0 text-dark"><i class="fa-solid fa-wave-square text-warning me-2"></i>Biểu Đồ Moving Average & Dị Biệt</h6>
+                <a id="linkChart2" href="#" target="_blank" class="btn btn-sm btn-outline-secondary">Mở Ảnh Gốc</a>
+            </div>
+            <div class="card-body p-2 text-center bg-light">
+                <img id="imgChart2" src="" class="img-fluid rounded border" alt="MA Anomaly Chart" style="max-height: 380px;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Descriptive Statistics Table -->
+<div class="card card-modern mb-4">
+    <div class="card-header bg-white py-3 border-0 d-flex justify-content-between align-items-center">
+        <div>
+            <h6 class="fw-bold mb-0 text-dark">
+                <i class="fa-solid fa-table me-2 text-primary"></i>Bảng Thống Kê Mô Tả Chi Tiết (Descriptive Profiling)
+            </h6>
+            <small class="text-secondary">Tính toán các đại lượng phân phối chuẩn và phân vị từ tập dữ liệu lịch sử</small>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-modern table-bordered align-middle mb-0 text-center">
+                <thead>
+                    <tr>
+                        <th class="text-start">Chỉ Số Đo Lường</th>
+                        <th>Số Mẫu (N)</th>
+                        <th>Trung Bình (Mean)</th>
+                        <th>Trung Vị (Median)</th>
+                        <th>Độ Lệch Chuẩn (Std)</th>
+                        <th>Nhỏ Nhất (Min)</th>
+                        <th>Lớn Nhất (Max)</th>
+                        <th>Phân Vị 25%</th>
+                        <th>Phân Vị 75%</th>
+                        <th>Phân Vị 95%</th>
+                        <th>Phân Vị 99%</th>
+                    </tr>
+                </thead>
+                <tbody id="statsTableBody">
+                    <tr>
+                        <td colspan="11" class="py-4 text-muted">
+                            <span class="spinner-border spinner-border-sm me-2"></span> Đang tải dữ liệu và tính toán thống kê...
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Correlation Matrix Table -->
+<div class="card card-modern mb-4">
+    <div class="card-header bg-white py-3 border-0 d-flex justify-content-between align-items-center">
+        <div>
+            <h6 class="fw-bold mb-0 text-dark">
+                <i class="fa-solid fa-project-diagram me-2 text-info"></i>Ma Trận Tương Quan Tuyến Tính (Pearson Correlation Matrix)
+            </h6>
+            <small class="text-secondary">Độ tương quan giữa các tài nguyên [-1.0 đến +1.0]</small>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-modern table-bordered align-middle mb-0 text-center" id="corrTable">
+                <thead>
+                    <tr>
+                        <th class="text-start">Tài Nguyên</th>
+                        <th>CPU (%)</th>
+                        <th>RAM (%)</th>
+                        <th>Disk (%)</th>
+                        <th>Mạng Gửi (MB)</th>
+                        <th>Mạng Nhận (MB)</th>
+                        <th>Số Tiến Trình</th>
+                    </tr>
+                </thead>
+                <tbody id="corrTableBody">
+                    <tr>
+                        <td colspan="7" class="py-3 text-muted">Đang tính toán ma trận tương quan...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+async function loadAnalytics() {
+    const select = document.getElementById("analyticsAgentSelect");
+    const agentId = select ? select.value.trim() : "";
+    if (!agentId) return;
+
+    try {
+        const res = await fetch(`/api/analytics/statistics?agent_id=${encodeURIComponent(agentId)}`);
+        const data = await res.json();
+
+        if (data.error) {
+            document.getElementById("statsTableBody").innerHTML = `<tr><td colspan="11" class="py-4 text-danger">${data.error}</td></tr>`;
+            document.getElementById("corrTableBody").innerHTML = `<tr><td colspan="7" class="py-3 text-danger">${data.error}</td></tr>`;
+            return;
+        }
+
+        // 1. Cập nhật Trends & Sample Count
+        document.getElementById("sampleCount").textContent = data.sample_count || 0;
+        const trendEl = document.getElementById("trendText");
+        const badgeEl = document.getElementById("trendBadge");
+        const trend = data.cpu_trend;
+        trendEl.textContent = trend;
+
+        if (trend.includes("RISING")) {
+            badgeEl.className = "badge bg-danger";
+            badgeEl.textContent = "Đang tăng nhanh";
+        } else if (trend.includes("FALLING")) {
+            badgeEl.className = "badge bg-success";
+            badgeEl.textContent = "Đang giảm";
+        } else {
+            badgeEl.className = "badge bg-secondary";
+            badgeEl.textContent = "Ổn định";
+        }
+
+        // 2. Điền bảng thống kê mô tả
+        const tbody = document.getElementById("statsTableBody");
+        tbody.innerHTML = "";
+        const metricLabels = {
+            "cpu_usage": "Sử dụng CPU (%)",
+            "ram_usage": "Chiếm dụng RAM (%)",
+            "disk_usage": "Chiếm dụng Đĩa (%)",
+            "net_sent_mb": "Mạng gửi (MB/chu kỳ)",
+            "net_recv_mb": "Mạng nhận (MB/chu kỳ)",
+            "process_count": "Số lượng tiến trình"
+        };
+
+        for (const [key, label] of Object.entries(metricLabels)) {
+            const stat = data.statistics[key];
+            if (!stat) continue;
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td class="text-start fw-bold">${label}</td>
+                <td>${stat.count}</td>
+                <td class="text-primary fw-bold">${stat.mean}</td>
+                <td>${stat.median}</td>
+                <td>${stat.std}</td>
+                <td>${stat.min}</td>
+                <td class="text-danger fw-bold">${stat.max}</td>
+                <td>${stat.p25}</td>
+                <td>${stat.p75}</td>
+                <td>${stat.p95}</td>
+                <td>${stat.p99}</td>
+            `;
+            tbody.appendChild(tr);
+        }
+
+        // 3. Điền ma trận tương quan
+        const corrBody = document.getElementById("corrTableBody");
+        corrBody.innerHTML = "";
+        const corr = data.correlation;
+        if (corr) {
+            const metrics = ["cpu_usage", "ram_usage", "disk_usage", "net_sent_mb", "net_recv_mb", "process_count"];
+            metrics.forEach(rowKey => {
+                const tr = document.createElement("tr");
+                let colsHtml = `<td class="fw-bold text-start">${metricLabels[rowKey] || rowKey}</td>`;
+                metrics.forEach(colKey => {
+                    const val = corr[rowKey] ? corr[rowKey][colKey] : "-";
+                    let bgStyle = "";
+                    let textClass = "";
+                    if (typeof val === 'number') {
+                        if (val >= 0.7 && rowKey !== colKey) {
+                            textClass = "text-danger fw-bold";
+                            bgStyle = "background-color: #fee2e2;";
+                        } else if (val <= -0.5) {
+                            textClass = "text-primary fw-bold";
+                            bgStyle = "background-color: #e0f2fe;";
+                        }
+                    }
+                    colsHtml += `<td style="${bgStyle}" class="${textClass}">${val !== undefined ? val : "-"}</td>`;
+                });
+                tr.innerHTML = colsHtml;
+                corrBody.appendChild(tr);
+            });
+        }
+
+    } catch (err) {
+        console.error("Lỗi tải phân tích:", err);
+    }
+}
+
+document.getElementById("analyticsAgentSelect")?.addEventListener("change", loadAnalytics);
+
+document.getElementById("btnGenerateCharts")?.addEventListener("click", async () => {
+    const select = document.getElementById("analyticsAgentSelect");
+    const agentId = select ? select.value.trim() : "";
+    const placeholder = document.getElementById("alertPlaceholder");
+    placeholder.innerHTML = `<div class="alert alert-info py-2 small"><span class="spinner-border spinner-border-sm me-2"></span>Đang khởi tạo Matplotlib và trích xuất biểu đồ chất lượng cao (300 DPI)...</div>`;
+
+    try {
+        const res = await fetch(`/api/reports/generate-charts?agent_id=${encodeURIComponent(agentId)}`);
+        const data = await res.json();
+        if (data.success) {
+            placeholder.innerHTML = `
+                <div class="alert alert-success alert-dismissible fade show py-2 small" role="alert">
+                    <i class="fa-solid fa-circle-check me-2"></i>${data.message}
+                    <button type="button" class="btn-close py-2" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+            // Hiển thị trực tiếp 2 ảnh trên giao diện
+            if (data.charts && data.charts.length >= 2) {
+                const row = document.getElementById("chartsPreviewRow");
+                document.getElementById("imgChart1").src = data.charts[0] + "?t=" + Date.now();
+                document.getElementById("linkChart1").href = data.charts[0];
+                document.getElementById("imgChart2").src = data.charts[1] + "?t=" + Date.now();
+                document.getElementById("linkChart2").href = data.charts[1];
+                row.style.display = "flex";
+                row.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else {
+            placeholder.innerHTML = `<div class="alert alert-danger py-2 small">${data.error || data.message}</div>`;
+        }
+    } catch (e) {
+        placeholder.innerHTML = `<div class="alert alert-danger py-2 small">Lỗi xuất biểu đồ: ${e}</div>`;
+    }
+});
+
+document.addEventListener("DOMContentLoaded", loadAnalytics);
+</script>
+{% endblock %}

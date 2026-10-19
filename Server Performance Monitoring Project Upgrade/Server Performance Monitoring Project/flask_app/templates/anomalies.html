@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block title %}Nhật Ký Dị Biệt - Anomaly Detection Engine{% endblock %}
+
+{% block content %}
+<!-- Top Header & Controls -->
+<div class="control-bar mb-4 d-flex flex-wrap align-items-center justify-content-between gap-3">
+    <div class="d-flex align-items-center gap-2">
+        <div class="icon-container bg-danger-subtle text-danger">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div>
+            <h5 class="fw-bold mb-0 text-dark">Nhật Ký Phát Hiện Sự Kiện Bất Thường</h5>
+            <small class="text-secondary">Cảnh báo tự động tổng hợp từ Ngưỡng Tĩnh, Dynamic Z-Score và Hybrid MA Spike</small>
+        </div>
+    </div>
+
+    <div class="d-flex flex-wrap align-items-center gap-2">
+        <!-- Search Filter Input -->
+        <div class="input-group input-group-sm" style="max-width: 240px;">
+            <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search text-muted"></i></span>
+            <input type="text" id="anomalySearch" class="form-control border-start-0" placeholder="Tìm theo node, metric..." onkeyup="filterAnomalies()">
+        </div>
+
+        <!-- Reload Button -->
+        <button class="btn btn-outline-secondary btn-sm px-3" onclick="location.reload()">
+            <i class="fa-solid fa-rotate me-1"></i> Làm Mới
+        </button>
+    </div>
+</div>
+
+<!-- Filter Pills -->
+<div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+    <div class="btn-group btn-group-sm" role="group">
+        <button type="button" class="btn btn-outline-secondary active filter-btn" onclick="applyFilter('ALL', this)">Tất cả</button>
+        <button type="button" class="btn btn-outline-danger filter-btn" onclick="applyFilter('CRITICAL', this)">CRITICAL</button>
+        <button type="button" class="btn btn-outline-warning filter-btn" onclick="applyFilter('WARNING', this)">WARNING</button>
+        <button type="button" class="btn btn-outline-secondary filter-btn" onclick="applyFilter('CPU', this)">CPU</button>
+        <button type="button" class="btn btn-outline-secondary filter-btn" onclick="applyFilter('RAM', this)">RAM</button>
+        <button type="button" class="btn btn-outline-secondary filter-btn" onclick="applyFilter('DISK', this)">DISK</button>
+    </div>
+    <div>
+        <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-3 py-2 fs-7">
+            Tổng cộng: <strong id="totalAnomalyCount">{{ anomalies|length }}</strong> sự kiện
+        </span>
+    </div>
+</div>
+
+<!-- Anomalies Table -->
+<div class="card card-modern">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-modern table-hover align-middle mb-0" id="anomaliesTable">
+                <thead>
+                    <tr>
+                        <th>Mã ID</th>
+                        <th>Mốc Thời Gian</th>
+                        <th>Trạm Giám Sát</th>
+                        <th>Tài Nguyên</th>
+                        <th>Giá Trị Đo</th>
+                        <th>Ngưỡng Áp Dụng</th>
+                        <th>Thuật Toán Phát Hiện</th>
+                        <th>Mức Độ</th>
+                        <th>Mô Tả Chi Tiết</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in anomalies %}
+                    <tr class="anomaly-row" 
+                        data-severity="{{ item.severity }}" 
+                        data-metric="{{ item.metric }}" 
+                        data-agent="{{ item.agent_id }}">
+                        <td class="text-secondary small">#{{ item.id }}</td>
+                        <td><code class="ip-tag">{{ item.timestamp }}</code></td>
+                        <td class="fw-bold text-primary">{{ item.agent_id }}</td>
+                        <td>
+                            {% if item.metric == 'CPU' %}
+                            <span class="badge bg-warning-subtle text-warning border border-warning-subtle"><i class="fa-solid fa-microchip me-1"></i>CPU</span>
+                            {% elif item.metric == 'RAM' %}
+                            <span class="badge bg-primary-subtle text-primary border border-primary-subtle"><i class="fa-solid fa-memory me-1"></i>RAM</span>
+                            {% else %}
+                            <span class="badge bg-success-subtle text-success border border-success-subtle"><i class="fa-solid fa-hard-drive me-1"></i>{{ item.metric }}</span>
+                            {% endif %}
+                        </td>
+                        <td class="fw-bold text-danger">{{ item.metric_value }}%</td>
+                        <td><small class="text-secondary">{{ item.threshold_used }}%</small></td>
+                        <td>
+                            <span class="badge bg-light text-dark border">{{ item.detection_method }}</span>
+                        </td>
+                        <td>
+                            {% if item.severity == 'CRITICAL' %}
+                            <span class="badge bg-danger"><i class="fa-solid fa-fire me-1"></i>CRITICAL</span>
+                            {% else %}
+                            <span class="badge bg-warning text-dark"><i class="fa-solid fa-triangle-exclamation me-1"></i>WARNING</span>
+                            {% endif %}
+                        </td>
+                        <td><small class="text-secondary">{{ item.description }}</small></td>
+                    </tr>
+                    {% else %}
+                    <tr id="emptyRow">
+                        <td colspan="9" class="text-center py-5 text-muted">
+                            <i class="fa-solid fa-circle-check text-success fa-3x mb-3 d-block"></i>
+                            <h6 class="fw-bold text-dark">Hệ thống đang hoạt động an toàn & ổn định</h6>
+                            <p class="small text-secondary mb-0">Chưa ghi nhận bất kỳ sự kiện quá tải hay dị biệt nào vượt ngưỡng.</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let currentFilter = 'ALL';
+
+function applyFilter(filterType, btn) {
+    currentFilter = filterType;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    filterAnomalies();
+}
+
+function filterAnomalies() {
+    const searchText = (document.getElementById('anomalySearch')?.value || '').toLowerCase();
+    const rows = document.querySelectorAll('.anomaly-row');
+    let visibleCount = 0;
+
+    rows.forEach(row => {
+        const severity = row.getAttribute('data-severity');
+        const metric = row.getAttribute('data-metric');
+        const agent = (row.getAttribute('data-agent') || '').toLowerCase();
+        const textContent = row.textContent.toLowerCase();
+
+        let matchesFilter = true;
+        if (currentFilter === 'CRITICAL' || currentFilter === 'WARNING') {
+            matchesFilter = (severity === currentFilter);
+        } else if (currentFilter === 'CPU' || currentFilter === 'RAM' || currentFilter === 'DISK') {
+            matchesFilter = (metric === currentFilter);
+        }
+
+        const matchesSearch = !searchText || textContent.includes(searchText) || agent.includes(searchText);
+
+        if (matchesFilter && matchesSearch) {
+            row.style.display = '';
+            visibleCount++;
+        } else {
+            row.style.display = 'none';
+        }
+    });
+
+    const countEl = document.getElementById('totalAnomalyCount');
+    if (countEl) countEl.textContent = visibleCount;
+}
+</script>
+{% endblock %}

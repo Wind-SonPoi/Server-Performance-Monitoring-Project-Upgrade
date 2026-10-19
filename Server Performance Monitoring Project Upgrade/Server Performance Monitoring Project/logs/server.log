@@ -1,0 +1,168 @@
+2026-10-19 21:39:27,178 [INFO] (MainThread) TCP Socket Server đang lắng nghe tại 0.0.0.0:9999 (Hỗ trợ LAN/Multi-interface)
+2026-10-19 21:39:28,425 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63251)
+2026-10-19 21:39:28,482 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63252)
+2026-10-19 21:39:28,484 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63253)
+2026-10-19 21:39:28,485 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63254)
+2026-10-19 21:39:28,485 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63255)
+2026-10-19 21:39:28,487 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63256)
+2026-10-19 21:39:28,534 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63257)
+2026-10-19 21:39:28,537 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63258)
+2026-10-19 21:39:28,538 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63259)
+2026-10-19 21:39:28,539 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63261)
+2026-10-19 21:39:28,541 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63260)
+2026-10-19 21:39:28,543 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63262)
+2026-10-19 21:39:28,545 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63263)
+2026-10-19 21:39:28,546 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63264)
+2026-10-19 21:39:28,547 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63265)
+2026-10-19 21:39:28,549 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63266)
+2026-10-19 21:39:28,594 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63267)
+2026-10-19 21:39:28,595 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63268)
+2026-10-19 21:39:28,596 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63269)
+2026-10-19 21:39:28,598 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63270)
+2026-10-19 21:39:28,602 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63271)
+2026-10-19 21:39:28,603 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63272)
+2026-10-19 21:39:28,606 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63273)
+2026-10-19 21:39:28,607 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63274)
+2026-10-19 21:39:28,608 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63275)
+2026-10-19 21:39:28,612 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63276)
+2026-10-19 21:39:28,614 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63277)
+2026-10-19 21:39:28,615 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63278)
+2026-10-19 21:39:28,616 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63279)
+2026-10-19 21:39:28,617 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63280)
+2026-10-19 21:39:28,618 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63281)
+2026-10-19 21:39:28,620 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63282)
+2026-10-19 21:39:28,621 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63283)
+2026-10-19 21:39:28,622 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63284)
+2026-10-19 21:39:28,624 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63286)
+2026-10-19 21:39:28,625 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 63285)
+2026-10-19 21:39:28,680 [INFO] (MainThread) TCP Socket Server đã tắt an toàn.
+2026-10-19 21:39:53,587 [INFO] (MainThread) TCP Socket Server đang lắng nghe tại 0.0.0.0:9999 (Hỗ trợ LAN/Multi-interface)
+2026-10-19 21:41:34,406 [INFO] (MainThread) TCP Socket Server đang lắng nghe tại 0.0.0.0:9999 (Hỗ trợ LAN/Multi-interface)
+2026-10-19 21:41:35,437 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 52872)
+2026-10-19 21:41:36,215 [INFO] (Client-52872) Agent [latency-tester] từ ('127.0.0.1', 52872) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:36,218 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 52873)
+2026-10-19 21:41:36,220 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 52874)
+2026-10-19 21:41:36,222 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 52875)
+2026-10-19 21:41:36,223 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 52876)
+2026-10-19 21:41:36,225 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 52877)
+2026-10-19 21:41:37,079 [INFO] (Client-52873) Agent [latency-tester] từ ('127.0.0.1', 52873) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:37,092 [INFO] (Client-52874) Agent [latency-tester] từ ('127.0.0.1', 52874) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:37,103 [INFO] (Client-52876) Agent [latency-tester] từ ('127.0.0.1', 52876) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:37,111 [INFO] (Client-52877) Agent [latency-tester] từ ('127.0.0.1', 52877) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:37,119 [INFO] (Client-52875) Agent [latency-tester] từ ('127.0.0.1', 52875) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:37,120 [INFO] (MainThread) TCP Socket Server đã tắt an toàn.
+2026-10-19 21:41:54,181 [INFO] (MainThread) TCP Socket Server đang lắng nghe tại 0.0.0.0:9999 (Hỗ trợ LAN/Multi-interface)
+2026-10-19 21:41:55,406 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55113)
+2026-10-19 21:41:56,159 [INFO] (Client-55113) Agent [latency-tester] từ ('127.0.0.1', 55113) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:56,161 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55114)
+2026-10-19 21:41:56,163 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55115)
+2026-10-19 21:41:56,165 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55116)
+2026-10-19 21:41:56,167 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55117)
+2026-10-19 21:41:56,167 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55118)
+2026-10-19 21:41:57,026 [INFO] (Client-55116) Agent [latency-tester] từ ('127.0.0.1', 55116) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:57,037 [INFO] (Client-55118) Agent [latency-tester] từ ('127.0.0.1', 55118) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:57,047 [INFO] (Client-55114) Agent [latency-tester] từ ('127.0.0.1', 55114) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:57,061 [INFO] (Client-55115) Agent [latency-tester] từ ('127.0.0.1', 55115) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:57,065 [INFO] (Client-55117) Agent [latency-tester] từ ('127.0.0.1', 55117) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:57,067 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55119)
+2026-10-19 21:41:57,070 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55120)
+2026-10-19 21:41:57,072 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55121)
+2026-10-19 21:41:57,074 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55123)
+2026-10-19 21:41:57,075 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55122)
+2026-10-19 21:41:57,077 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55124)
+2026-10-19 21:41:57,079 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55125)
+2026-10-19 21:41:57,080 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55126)
+2026-10-19 21:41:57,082 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55127)
+2026-10-19 21:41:57,084 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55128)
+2026-10-19 21:41:58,164 [INFO] (Client-55127) Agent [latency-tester] từ ('127.0.0.1', 55127) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:58,278 [INFO] (Client-55128) Agent [latency-tester] từ ('127.0.0.1', 55128) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:58,283 [INFO] (Client-55119) Agent [latency-tester] từ ('127.0.0.1', 55119) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:58,312 [INFO] (Client-55121) Agent [latency-tester] từ ('127.0.0.1', 55121) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:58,381 [INFO] (Client-55126) Agent [latency-tester] từ ('127.0.0.1', 55126) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:58,418 [INFO] (Client-55122) Agent [latency-tester] từ ('127.0.0.1', 55122) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:58,456 [INFO] (Client-55120) Agent [latency-tester] từ ('127.0.0.1', 55120) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:58,465 [INFO] (Client-55125) Agent [latency-tester] từ ('127.0.0.1', 55125) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:58,548 [INFO] (Client-55124) Agent [latency-tester] từ ('127.0.0.1', 55124) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:58,590 [INFO] (Client-55123) Agent [latency-tester] từ ('127.0.0.1', 55123) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:41:58,593 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55129)
+2026-10-19 21:41:58,596 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55130)
+2026-10-19 21:41:58,600 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55131)
+2026-10-19 21:41:58,603 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55132)
+2026-10-19 21:41:58,606 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55133)
+2026-10-19 21:41:58,608 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55134)
+2026-10-19 21:41:58,609 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55135)
+2026-10-19 21:41:58,611 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55136)
+2026-10-19 21:41:58,612 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55137)
+2026-10-19 21:41:58,614 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55138)
+2026-10-19 21:41:58,616 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55139)
+2026-10-19 21:41:58,617 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55140)
+2026-10-19 21:41:58,618 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55141)
+2026-10-19 21:41:58,620 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55142)
+2026-10-19 21:41:58,621 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55143)
+2026-10-19 21:41:58,622 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55144)
+2026-10-19 21:41:58,623 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55145)
+2026-10-19 21:41:58,624 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55146)
+2026-10-19 21:41:58,625 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55147)
+2026-10-19 21:41:58,625 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 55148)
+2026-10-19 21:42:00,195 [INFO] (Client-55137) Agent [latency-tester] từ ('127.0.0.1', 55137) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:42:00,235 [INFO] (Client-55129) Agent [latency-tester] từ ('127.0.0.1', 55129) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:42:00,242 [INFO] (Client-55140) Agent [latency-tester] từ ('127.0.0.1', 55140) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:42:00,249 [INFO] (Client-55148) Agent [latency-tester] từ ('127.0.0.1', 55148) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:42:00,318 [INFO] (Client-55144) Agent [latency-tester] từ ('127.0.0.1', 55144) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:42:00,335 [INFO] (Client-55142) Agent [latency-tester] từ ('127.0.0.1', 55142) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:42:00,356 [INFO] (Client-55132) Agent [latency-tester] từ ('127.0.0.1', 55132) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:42:00,385 [INFO] (Client-55130) Agent [latency-tester] từ ('127.0.0.1', 55130) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:42:00,552 [INFO] (Client-55131) Agent [latency-tester] từ ('127.0.0.1', 55131) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:42:00,577 [INFO] (Client-55141) Agent [latency-tester] từ ('127.0.0.1', 55141) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:42:00,609 [INFO] (Client-55138) Agent [latency-tester] từ ('127.0.0.1', 55138) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:42:00,700 [INFO] (Client-55143) Agent [latency-tester] từ ('127.0.0.1', 55143) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:42:00,803 [INFO] (Client-55139) Agent [latency-tester] từ ('127.0.0.1', 55139) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:42:00,950 [INFO] (Client-55136) Agent [latency-tester] từ ('127.0.0.1', 55136) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:42:00,966 [INFO] (Client-55145) Agent [latency-tester] từ ('127.0.0.1', 55145) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:42:01,075 [INFO] (Client-55133) Agent [latency-tester] từ ('127.0.0.1', 55133) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:42:01,160 [INFO] (Client-55147) Agent [latency-tester] từ ('127.0.0.1', 55147) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:42:01,194 [INFO] (Client-55146) Agent [latency-tester] từ ('127.0.0.1', 55146) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:42:01,217 [INFO] (Client-55135) Agent [latency-tester] từ ('127.0.0.1', 55135) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:42:01,235 [INFO] (Client-55134) Agent [latency-tester] từ ('127.0.0.1', 55134) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 21:42:01,236 [INFO] (MainThread) TCP Socket Server đã tắt an toàn.
+2026-10-19 21:56:24,602 [INFO] (MainThread) TCP Socket Server đang lắng nghe tại 0.0.0.0:9999 (Hỗ trợ LAN/Multi-interface)
+2026-10-19 21:56:27,485 [INFO] (Flask-Web) WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.20.10.2:5000
+2026-10-19 21:56:27,486 [INFO] (Flask-Web) Press CTRL+C to quit
+2026-10-19 21:56:30,236 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 61829)
+2026-10-19 21:56:30,246 [INFO] (Client-61829) Đã đăng ký máy chủ: local-host-agent (LAPTOP-5UNPL8F3) từ IP 127.0.0.1
+2026-10-19 21:56:49,389 [INFO] (MainThread) TCP Socket Server đã tắt an toàn.
+2026-10-19 21:56:49,458 [INFO] (MainThread) TCP Socket Server đã tắt an toàn.
+2026-10-19 22:08:16,813 [INFO] (MainThread) TCP Socket Server đang lắng nghe tại 0.0.0.0:9999 (Hỗ trợ LAN/Multi-interface)
+2026-10-19 22:08:19,623 [INFO] (Flask-Web) WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.20.10.2:5000
+2026-10-19 22:08:19,623 [INFO] (Flask-Web) Press CTRL+C to quit
+2026-10-19 22:08:22,401 [INFO] (Server-Acceptor) Chấp nhận kết nối mới từ: ('127.0.0.1', 54241)
+2026-10-19 22:08:22,408 [INFO] (Client-54241) Đã đăng ký máy chủ: local-host-agent (LAPTOP-5UNPL8F3) từ IP 127.0.0.1
+2026-10-19 22:08:47,891 [INFO] (MainThread) TCP Socket Server đã tắt an toàn.
+2026-10-19 22:08:49,604 [INFO] (Client-54241) Agent [local-host-agent] từ ('127.0.0.1', 54241) đã ngắt kết nối -> Đánh dấu OFFLINE
+2026-10-19 22:08:50,117 [INFO] (Thread-3 (process_request_thread)) 127.0.0.1 - - [19/Oct/2026 22:08:50] "GET / HTTP/1.1" 200 -
+2026-10-19 22:08:50,345 [INFO] (Thread-5 (process_request_thread)) 127.0.0.1 - - [19/Oct/2026 22:08:50] "GET /static/js/dashboard.js HTTP/1.1" 200 -
+2026-10-19 22:08:50,349 [INFO] (Thread-4 (process_request_thread)) 127.0.0.1 - - [19/Oct/2026 22:08:50] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-10-19 22:08:51,829 [INFO] (Thread-6 (process_request_thread)) 127.0.0.1 - - [19/Oct/2026 22:08:51] "GET /api/settings HTTP/1.1" 200 -
+2026-10-19 22:08:51,871 [INFO] (Thread-7 (process_request_thread)) 127.0.0.1 - - [19/Oct/2026 22:08:51] "GET /api/summary HTTP/1.1" 200 -
+2026-10-19 22:08:51,887 [INFO] (Thread-8 (process_request_thread)) 127.0.0.1 - - [19/Oct/2026 22:08:51] "GET /api/metrics/recent?limit=40 HTTP/1.1" 200 -
+2026-10-19 22:08:51,947 [INFO] (Thread-9 (process_request_thread)) 127.0.0.1 - - [19/Oct/2026 22:08:51] "GET /api/agents HTTP/1.1" 200 -
+2026-10-19 22:08:52,457 [INFO] (Thread-10 (process_request_thread)) 127.0.0.1 - - [19/Oct/2026 22:08:52] "GET /favicon.ico HTTP/1.1" 404 -
+2026-10-19 22:08:54,820 [INFO] (Thread-11 (process_request_thread)) 127.0.0.1 - - [19/Oct/2026 22:08:54] "GET /api/settings HTTP/1.1" 200 -
+2026-10-19 22:08:54,840 [INFO] (Thread-12 (process_request_thread)) 127.0.0.1 - - [19/Oct/2026 22:08:54] "GET /api/summary HTTP/1.1" 200 -
+2026-10-19 22:08:54,857 [INFO] (Thread-13 (process_request_thread)) 127.0.0.1 - - [19/Oct/2026 22:08:54] "GET /api/metrics/recent?limit=40 HTTP/1.1" 200 -
+2026-10-19 22:08:54,900 [INFO] (Thread-14 (process_request_thread)) 127.0.0.1 - - [19/Oct/2026 22:08:54] "GET /api/agents HTTP/1.1" 200 -
+2026-10-19 22:08:57,823 [INFO] (Thread-15 (process_request_thread)) 127.0.0.1 - - [19/Oct/2026 22:08:57] "GET /api/settings HTTP/1.1" 200 -
+2026-10-19 22:08:57,846 [INFO] (Thread-16 (process_request_thread)) 127.0.0.1 - - [19/Oct/2026 22:08:57] "GET /api/summary HTTP/1.1" 200 -
+2026-10-19 22:08:57,863 [INFO] (Thread-17 (process_request_thread)) 127.0.0.1 - - [19/Oct/2026 22:08:57] "GET /api/metrics/recent?limit=40 HTTP/1.1" 200 -
+2026-10-19 22:08:57,906 [INFO] (Thread-18 (process_request_thread)) 127.0.0.1 - - [19/Oct/2026 22:08:57] "GET /api/agents HTTP/1.1" 200 -
+2026-10-19 22:09:00,829 [INFO] (Thread-19 (process_request_thread)) 127.0.0.1 - - [19/Oct/2026 22:09:00] "GET /api/settings HTTP/1.1" 200 -
+2026-10-19 22:09:00,851 [INFO] (Thread-20 (process_request_thread)) 127.0.0.1 - - [19/Oct/2026 22:09:00] "GET /api/summary HTTP/1.1" 200 -
+2026-10-19 22:09:00,870 [INFO] (Thread-21 (process_request_thread)) 127.0.0.1 - - [19/Oct/2026 22:09:00] "GET /api/metrics/recent?limit=40 HTTP/1.1" 200 -
+2026-10-19 22:09:00,918 [INFO] (Thread-22 (process_request_thread)) 127.0.0.1 - - [19/Oct/2026 22:09:00] "GET /api/agents HTTP/1.1" 200 -
+2026-10-19 22:09:10,097 [INFO] (MainThread) TCP Socket Server đã tắt an toàn.
